@@ -1,5 +1,14 @@
-angular.module("videoApp", ["firebase"])
+angular.module("videoApp", ["firebase", "ui.router"])
 
+    .config(function($stateProvider, $urlRouterProvider) {
+          $stateProvider
+            .state('home', {
+                url: '/home',
+                templateUrl: 'template/home.html'
+            });
+          $urlRouterProvider.otherwise('/home');
+    })
+    
     .constant("FIREBASE_URI", "https://videolibrary-klim91.firebaseio.com/")
     
     .controller("videoCtrl",  function($scope, VideoService){
