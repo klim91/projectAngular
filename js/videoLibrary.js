@@ -20,7 +20,8 @@ angular.module("videoApp", ["firebase", "ui.router"])
             ImageService.addCategory(category);
         };
         $scope.removeCategory = function(category){
-            ImageService.removeCategory(category);
+           BookmarksImageService.removeAllBookmarkForCategory(category);
+           ImageService.removeCategory(category);
         };
         $scope.updateCategory = function(category){
             ImageService.updateCategory(category);
@@ -29,10 +30,10 @@ angular.module("videoApp", ["firebase", "ui.router"])
         $scope.addBookmark = function(bookmark) {
             BookmarksImageService.addBookmark(bookmark);
         };
-        $scope.removeCategory = function(bookmark){
+        $scope.removeBookmark = function(bookmark){
             BookmarksImageService.removeBookmark(bookmark);
         };
-        $scope.updateCategory = function(bookmark){
+        $scope.updateBookmark = function(bookmark){
             BookmarksImageService.updateBookmark(bookmark);
         };
         
@@ -85,11 +86,20 @@ angular.module("videoApp", ["firebase", "ui.router"])
         var updateBookmark = function(bookmark){
             bookmarks.$save(bookmark);    
         };
+        var removeAllBookmarkForCategory = function(category){
+            var k = bookmarks.length;
+            for (var i = 0; i < k; i++) {
+                if (bookmarks[i].categoryname === category.name) {
+                    bookmarks.$remove(i);
+                }
+            }
+        };
         
         return {
             getBookmarks: getBookmarks,
             addBookmark: addBookmark,
             removeBookmark: removeBookmark,
-            updateBookmark: updateBookmark
+            updateBookmark: updateBookmark,
+            removeAllBookmarkForCategory: removeAllBookmarkForCategory
         }
     })
