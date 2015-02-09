@@ -17,7 +17,8 @@ angular.module("videoApp", ["firebase", "ui.router"])
         $scope.bookmarks = BookmarksImageService.getBookmarks();
         
         $scope.addCategory = function(category) {
-            ImageService.addCategory(category);
+            if(!ImageService.isExistsCategory(category))
+                ImageService.addCategory(category);
         };
         $scope.removeCategory = function(category){
            BookmarksImageService.removeAllBookmarkForCategory(category);
@@ -60,11 +61,21 @@ angular.module("videoApp", ["firebase", "ui.router"])
             categories.$save(category);
         };
         
+        var isExistsCategory = function(category){
+            var len = categories.length;
+            for(var i=0; i<len; i++){
+                if(categories[i].name === category.name)
+                    return true;
+            }
+            return false;
+        };
+        
         return {
             getCategories: getCategories,
             addCategory: addCategory,
             removeCategory: removeCategory,
-            updateCategory: updateCategory
+            updateCategory: updateCategory,
+            isExistsCategory: isExistsCategory
         }
         
     })
@@ -87,8 +98,8 @@ angular.module("videoApp", ["firebase", "ui.router"])
             bookmarks.$save(bookmark);    
         };
         var removeAllBookmarkForCategory = function(category){
-            var k = bookmarks.length;
-            for (var i = 0; i < k; i++) {
+            var len = bookmarks.length;
+            for (var i=0; i<len; i++) {
                 if (bookmarks[i].categoryname === category.name) {
                     bookmarks.$remove(i);
                 }
