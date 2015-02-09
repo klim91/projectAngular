@@ -5,30 +5,40 @@ angular.module("videoApp", ["firebase", "ui.router"])
             .state('home', {
                 url: '/home',
                 templateUrl: 'template/home.html'
-            });
+            })
           $urlRouterProvider.otherwise('/home');
     })
     
     .constant("FIREBASE_URI", "https://videolibrary-klim91.firebaseio.com/")
     
-    .controller("videoCtrl",  function($scope, VideoService){
-        $scope.newCategory = {name: ''};
-        $scope.currentCategory = null;
+    .controller("imageCtrl",  function($scope, ImageService, BookmarksImageService){
         
-        $scope.categories = VideoService.getCategories();
+        $scope.categories = ImageService.getCategories();
+        $scope.bookmarks = BookmarksImageService.getBookmarks();
+        
         $scope.addCategory = function(category) {
-            VideoService.addCategory({description: category});
+            ImageService.addCategory(category);
         };
         $scope.removeCategory = function(category){
-            VideoService.removeCategory(category);
+            ImageService.removeCategory(category);
         };
         $scope.updateCategory = function(category){
-            VideoService.updateCategory(category);
+            ImageService.updateCategory(category);
+        };
+        
+        $scope.addBookmark = function(bookmark) {
+            BookmarksImageService.addBookmark(bookmark);
+        };
+        $scope.removeCategory = function(bookmark){
+            BookmarksImageService.removeBookmark(bookmark);
+        };
+        $scope.updateCategory = function(bookmark){
+            BookmarksImageService.updateBookmark(bookmark);
         };
         
     })
     
-    .factory("VideoService", function($firebase, FIREBASE_URI){
+    .factory("ImageService", function($firebase, FIREBASE_URI){
         var refCategory = new Firebase(FIREBASE_URI);
         var sync = $firebase(refCategory);
         var categories = sync.$asArray();
@@ -56,4 +66,30 @@ angular.module("videoApp", ["firebase", "ui.router"])
             updateCategory: updateCategory
         }
         
+    })
+    
+    .factory("BookmarksImageService", function($firebase, FIREBASE_URI){
+        var refBookmarks = new Firebase(FIREBASE_URI+"/bookmarks");
+        var sync = $firebase(refBookmarks);
+        var bookmarks = sync.$asArray();    
+        
+        var getBookmarks = function(){
+            return bookmarks;
+        };
+        var addBookmark = function(bookmark){
+            bookmarks.$add(bookmark);
+        };
+        var removeBookmark = function(bookmark){
+            bookmarks.$remove(bookmark);
+        };
+        var updateBookmark = function(bookmark){
+            bookmarks.$save(bookmark);    
+        };
+        
+        return {
+            getBookmarks: getBookmarks,
+            addBookmark: addBookmark,
+            removeBookmark: removeBookmark,
+            updateBookmark: updateBookmark
+        }
     })
