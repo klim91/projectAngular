@@ -1,9 +1,6 @@
-    <header>
-     <h1>Video Library</h1>
-    </header>
     <h3>Add Category</h3>
-    <form ng-submit="addCategory(newCategory)" ng-cloak>
-        <input type="text" placeholder="Name" ng-model="newCategory.name" />
+    <form ng-submit="addCategory(category)" ng-cloak>
+        <input type="text" placeholder="Name" ng-model="category.name" />
         <button type="submit">Add</button>
     </form>
     
@@ -16,9 +13,41 @@
         </thead>
        <tbody>
            <tr ng-repeat="category in categories">
-               <td><input type="text" ng-model="category.description.name" ng-blur="updateCategory(category)"/></td>
+               <td><input type="text" ng-model="category.name" ng-blur="updateCategory(category)"/></td>
                <td>
                    <button ng-click="removeCategory(category)">Remove</button>
+               </td>
+           </tr>
+       </tbody>
+    </table>
+    
+    <h3>Add Bookmark</h3>
+    <form ng-submit="addBookmark(bookmark)" role="form" ng-cloak>
+        <input type="text" placeholder="Title" ng-model="bookmark.title" />
+        <input type="text" placeholder="URL" ng-model="bookmark.url" />
+        <input type="text" placeholder="Description" ng-model="bookmark.description" />
+        <select ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories"></select>
+        <button type="submit">Add</button>
+    </form>
+    
+     <table>
+        <thead>
+            <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>URL</th>
+            <th></th>
+        </tr>    
+        </thead>
+       <tbody>
+           <tr ng-repeat="bookmark in bookmarks">
+               <td><input type="text" ng-model="bookmark.title" ng-blur="updateBookmark(bookmark)"/></td>
+               <td><input type="text" ng-model="bookmark.categoryname" ng-blur="updateBookmark(bookmark)"/></td>
+               <td><input type="text" ng-model="bookmark.description" ng-blur="updateBookmark(bookmark)"/></td>
+               <td><input type="text" ng-model="bookmark.url" ng-blur="updateBookmark(bookmark)"/></td>
+               <td>
+                   <button ng-click="removeBookmark(bookmark)">Remove</button>
                </td>
            </tr>
        </tbody>
