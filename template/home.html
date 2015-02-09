@@ -26,7 +26,9 @@
         <input type="text" placeholder="Title" ng-model="bookmark.title" />
         <input type="text" placeholder="URL" ng-model="bookmark.url" />
         <input type="text" placeholder="Description" ng-model="bookmark.description" />
-        <select ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories"></select>
+        <select ng-model="bookmark.categoryname" ng-options="category.name for category in categories">
+            <option value="">-- choose category --</option>
+        </select>
         <button type="submit">Add</button>
     </form>
     
