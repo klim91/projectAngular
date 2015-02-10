@@ -1,2 +1,2 @@
 <h3>{{currentCategory.name}}</h3>
-<h5 ng-repeat="bookmark in currentBookmarks">{{bookmark.title}}</h5>
+    <a ng-repeat="bookmark in currentBookmarks" ng-click="setActiveBookmark(bookmark)" ui-sref="bookmark({title: bookmark.title})">{{bookmark.title}} </a>
