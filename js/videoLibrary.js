@@ -6,6 +6,10 @@ angular.module("videoApp", ["firebase", "ui.router"])
                 url: '/home',
                 templateUrl: 'template/home.html'
             })
+            .state('category', {
+                url: '/category/:name',
+                templateUrl: 'template/categories.html'
+            })
           $urlRouterProvider.otherwise('/home');
     })
     
@@ -15,6 +19,8 @@ angular.module("videoApp", ["firebase", "ui.router"])
         
         $scope.categories = ImageService.getCategories();
         $scope.bookmarks = BookmarksImageService.getBookmarks();
+        $scope.currentCategory = null;
+        $scope.currentBookmarks = [];
         
         $scope.addCategory = function(category) {
             if(!ImageService.isExistsCategory(category))
@@ -27,7 +33,6 @@ angular.module("videoApp", ["firebase", "ui.router"])
         $scope.updateCategory = function(category){
             ImageService.updateCategory(category);
         };
-        
         $scope.addBookmark = function(bookmark) {
             BookmarksImageService.addBookmark(bookmark);
         };
@@ -36,6 +41,19 @@ angular.module("videoApp", ["firebase", "ui.router"])
         };
         $scope.updateBookmark = function(bookmark){
             BookmarksImageService.updateBookmark(bookmark);
+        };
+        $scope.setActiveCategory = function(category){
+            $scope.currentCategory = category;
+            $scope.setBookmarkForCategory(category);
+        };
+        $scope.setBookmarkForCategory = function(category){
+            $scope.currentBookmarks = [];
+            var len = $scope.bookmarks.length;
+            for(var i=0; i<len; i++){
+                if($scope.bookmarks[i].categoryname ===  category.name){
+                     $scope.currentBookmarks.push($scope.bookmarks[i]);
+                }
+            }
         };
         
     })
@@ -105,7 +123,7 @@ angular.module("videoApp", ["firebase", "ui.router"])
                 }
             }
         };
-        
+
         return {
             getBookmarks: getBookmarks,
             addBookmark: addBookmark,
