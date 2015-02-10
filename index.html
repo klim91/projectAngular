@@ -17,10 +17,10 @@
     <div>
         <ul>
             <li><a ui-sref="home">Home</a></li>
+             <li ng-repeat="category in categories"><a ng-click="setActiveCategory(category)" ui-sref="category({name: category.name})">{{category.name}}</a></li>
         </ul>
     </div>
     <div ui-view></div>
-  </div>
   
 </body>
 </html>
