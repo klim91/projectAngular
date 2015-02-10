@@ -7,9 +7,13 @@ angular.module("videoApp", ["firebase", "ui.router"])
                 templateUrl: 'template/home.html'
             })
             .state('category', {
-                url: '/category/:name',
+                url: '/category',
                 templateUrl: 'template/categories.html'
             })
+           .state('bookmark', {
+                url: '/category/bookmark/:title',
+                templateUrl: 'template/categories.bookmark.html'
+            });
           $urlRouterProvider.otherwise('/home');
     })
     
@@ -20,6 +24,7 @@ angular.module("videoApp", ["firebase", "ui.router"])
         $scope.categories = ImageService.getCategories();
         $scope.bookmarks = BookmarksImageService.getBookmarks();
         $scope.currentCategory = null;
+        $scope.currentBookmark = null;
         $scope.currentBookmarks = [];
         
         $scope.addCategory = function(category) {
@@ -44,6 +49,7 @@ angular.module("videoApp", ["firebase", "ui.router"])
         };
         $scope.setActiveCategory = function(category){
             $scope.currentCategory = category;
+            $scope.currentBookmark = null;
             $scope.setBookmarkForCategory(category);
         };
         $scope.setBookmarkForCategory = function(category){
@@ -54,6 +60,9 @@ angular.module("videoApp", ["firebase", "ui.router"])
                      $scope.currentBookmarks.push($scope.bookmarks[i]);
                 }
             }
+        };
+         $scope.setActiveBookmark = function(bookmark){
+            $scope.currentBookmark = bookmark;
         };
         
     })
