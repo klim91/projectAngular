@@ -27,6 +27,7 @@ angular.module("videoApp", ["firebase", "ui.router"])
         $scope.currentBookmark = null;
         $scope.currentBookmarks = [];
         $scope.showEditCategory = false;
+        $scope.showEditBookmark = false;
         
         $scope.addCategory = function(category) {
             if(!ImageService.isExistsCategory(category))
