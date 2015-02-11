@@ -9,15 +9,26 @@
     <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="js/videoLibrary.js"></script>
+    
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body ng-controller="imageCtrl">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <p class="navbar-brand" href="#">Dynamic Image Gallery</p>
+        </div>
+      </div>
+    </nav>
+    
+    
     <header>
      <h1>Video Library</h1>
     </header>
     <div>
         <ul>
             <li><a ui-sref="home">Home</a></li>
-             <li ng-repeat="category in categories"><a ng-click="setActiveCategory(category)" ui-sref="category({name: category.name})">{{category.name}}</a></li>
+            <li ng-repeat="category in categories"><a ng-click="setActiveCategory(category)" ui-sref="category">{{category.name}}</a></li>
         </ul>
     </div>
     <div ui-view></div>
