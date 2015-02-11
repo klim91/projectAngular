@@ -1,34 +1,58 @@
-    <h3>Add Category</h3>
-    <form ng-submit="addCategory(category)" ng-cloak>
-        <input type="text" placeholder="Name" ng-model="category.name" />
-        <button type="submit">Add</button>
-    </form>
-    
-    <table>
-        <thead>
-            <tr>
-            <th>Name</th>
-            <th></th>
-        </tr>    
-        </thead>
-       <tbody>
-           <tr ng-repeat="category in categories">
-               <td><input type="text" ng-model="category.name" ng-blur="updateCategory(category)"/></td>
-               <td>
-                   <button ng-click="removeCategory(category)">Remove</button>
-               </td>
-           </tr>
-       </tbody>
-    </table>
+<div class="container theme-showcase" role="main">
+      <div class="jumbotron">
+        <h1>Advanced image gallery</h1>
+        <p>Welcome! This is page allow managing caterories of images and managing bookmarks for each category. Click add category to add new category, click add bookmark to add new bookmark.</p>
+        <p>Enjoy!</p>  
+      </div>
+    <div  class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading form-inline">
+              <div class="form-group"><h3 class="panel-title">Add new category</h3></div>
+              <div class="form-group pull-right">
+                  <button ng-click="showEditCategory = !showEditCategory" type="button" class="btn btn-xs btn-default">
+                      <span class="glyphicon glyphicon-edit"></span>  Edit
+                  </button>
+              </div>
+            </div>
+            <div class="panel-body">
+              <form class="form-inline" ng-submit="addCategory(category)" ng-cloak>
+                  <div class="form-group"><input class="form-control" type="text" placeholder="Name" ng-model="category.name" /></div>
+                  <div class="form-group"><button type="submit" class="btn btn-primary">Add</button></div>
+              </form>
+            </div>
+          </div>
+          <div ng-show="showEditCategory" class="panel panel-primary">
+            <div class="panel-heading form-inline">All categories</div>
+            <div class="panel-body">
+                <table  class="table-condensed">
+                    <thead>
+                        <tr>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>    
+                    </thead>
+                   <tbody>
+                       <tr ng-repeat="category in categories">
+                           <td><input class="form-control" type="text" ng-model="category.name" ng-blur="updateCategory(category)"/></td>
+                           <td>
+                               <button class="btn btn-danger" ng-click="removeCategory(category)">Remove</button>
+                           </td>
+                       </tr>
+                   </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+      
     
     <h3>Add Bookmark</h3>
     <form ng-submit="addBookmark(bookmark)" role="form" ng-cloak>
         <input type="text" placeholder="Title" ng-model="bookmark.title" />
         <input type="text" placeholder="URL" ng-model="bookmark.url" />
         <input type="text" placeholder="Description" ng-model="bookmark.description" />
-        <select ng-model="bookmark.categoryname" ng-options="category.name for category in categories">
-            <option value="">-- choose category --</option>
-        </select>
+        <select ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories"></select>
         <button type="submit">Add</button>
     </form>
     
@@ -54,3 +78,4 @@
            </tr>
        </tbody>
     </table>
+</div>
