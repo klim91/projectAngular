@@ -41,7 +41,7 @@
                     </thead>
                    <tbody>
                        <tr ng-repeat="category in categories">
-                           <td><input class="form-control" type="text" ng-model="category.name" ng-blur="updateCategory(category)"/></td>
+                           <td><input class="form-control" disabled="disabled" type="text" ng-model="category.name" ng-blur="updateCategory(category)"/></td>
                            <td>
                                <button class="btn btn-danger" ng-click="removeCategory(category)">Remove</button>
                            </td>
@@ -96,7 +96,7 @@
                    <tbody>
                        <tr ng-repeat="bookmark in bookmarks">
                            <td><input class="form-control" type="text" ng-model="bookmark.title" ng-blur="updateBookmark(bookmark)"/></td>
-                           <td><select class="form-control" ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories"></select>
+                           <td><select class="form-control" ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories" ng-blur="updateBookmark(bookmark)"></select>
                            <td><input class="form-control" type="text" ng-model="bookmark.description" ng-blur="updateBookmark(bookmark)"/></td>
                            <td><input class="form-control" type="text" ng-model="bookmark.url" ng-blur="updateBookmark(bookmark)"/></td>
                            <td>
