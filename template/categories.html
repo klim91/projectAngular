@@ -1,2 +1,11 @@
-<h3>{{currentCategory.name}}</h3>
-    <a ng-repeat="bookmark in currentBookmarks" ng-click="setActiveBookmark(bookmark)" ui-sref="bookmark({title: bookmark.title})">{{bookmark.title}} </a>
+<div class="row" style="margin-top: 130px;">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li ng-repeat="bookmark in currentBookmarks">
+                <a ng-click="setActiveBookmark(bookmark)" ui-sref="bookmark({title: bookmark.title})">{{bookmark.title}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="main">
+        </div>
+</div>
