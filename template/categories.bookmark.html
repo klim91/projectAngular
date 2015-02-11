@@ -1,6 +1,14 @@
-<h3>{{currentCategory.name}}</h3>
-    <a ng-repeat="bookmark in currentBookmarks" ng-click="setActiveBookmark(bookmark)" ui-sref="bookmark({title: bookmark.title})">{{bookmark.title}} </a>
-<div>
-    <h1>Cześć {{currentBookmark.title}}</h1>
-    <h1>Cześć2 {{currentBookmark.description}}</h1>
+<div class="row" style="margin-top: 130px;">
+        <div class="col-sm-2">
+          <ul class="nav nav-sidebar">
+            <li ng-repeat="bookmark in currentBookmarks">
+                <a ng-click="setActiveBookmark(bookmark)" ui-sref="bookmark({title: bookmark.title})">{{bookmark.title}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-2">
+             <h1>{{currentBookmark.title}}</h1> 
+             <blockquote><p>{{currentBookmark.description}}</p></blockquote>
+             <img class="img-rounded" src="{{currentBookmark.url}}" width="400" height="250"/>
+        </div>
 </div>
