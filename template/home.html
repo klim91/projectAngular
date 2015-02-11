@@ -45,37 +45,55 @@
           </div>
         </div>
     </div>
-      
     
-    <h3>Add Bookmark</h3>
-    <form ng-submit="addBookmark(bookmark)" role="form" ng-cloak>
-        <input type="text" placeholder="Title" ng-model="bookmark.title" />
-        <input type="text" placeholder="URL" ng-model="bookmark.url" />
-        <input type="text" placeholder="Description" ng-model="bookmark.description" />
-        <select ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories"></select>
-        <button type="submit">Add</button>
-    </form>
-    
-     <table>
-        <thead>
-            <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>URL</th>
-            <th></th>
-        </tr>    
-        </thead>
-       <tbody>
-           <tr ng-repeat="bookmark in bookmarks">
-               <td><input type="text" ng-model="bookmark.title" ng-blur="updateBookmark(bookmark)"/></td>
-               <td><input type="text" ng-model="bookmark.categoryname" ng-blur="updateBookmark(bookmark)"/></td>
-               <td><input type="text" ng-model="bookmark.description" ng-blur="updateBookmark(bookmark)"/></td>
-               <td><input type="text" ng-model="bookmark.url" ng-blur="updateBookmark(bookmark)"/></td>
-               <td>
-                   <button ng-click="removeBookmark(bookmark)">Remove</button>
-               </td>
-           </tr>
-       </tbody>
-    </table>
+    <div  class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading form-inline">
+              <div class="form-group"><h3 class="panel-title">Add new bookmark</h3></div>
+              <div class="form-group pull-right">
+                  <button ng-click="showEditBookmark = !showEditBookmark" type="button" class="btn btn-xs btn-default">
+                      <span class="glyphicon glyphicon-edit"></span>  Edit
+                  </button>
+              </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-inline" ng-submit="addBookmark(bookmark)" role="form" ng-cloak>
+                    <div class="form-group"><input class="form-control" type="text" placeholder="Title" ng-model="bookmark.title" /></div>
+                    <div class="form-group"><input class="form-control" type="text" placeholder="URL" ng-model="bookmark.url" /></div>
+                    <div class="form-group"><input class="form-control" type="text" placeholder="Description" ng-model="bookmark.description" /></div>
+                    <div class="form-group"><select class="form-control" ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories"></select></div>
+                    <div class="form-group"><button class="btn btn-primary" type="submit">Add</button></div>
+                </form>
+            </div>
+          </div>
+          <div ng-show="showEditBookmark" class="panel panel-primary">
+            <div class="panel-heading form-inline">All categories</div>
+            <div class="panel-body">
+                <table class="table-condensed">
+                    <thead>
+                        <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>URL</th>
+                        <th></th>
+                    </tr>    
+                    </thead>
+                   <tbody>
+                       <tr ng-repeat="bookmark in bookmarks">
+                           <td><input class="form-control" type="text" ng-model="bookmark.title" ng-blur="updateBookmark(bookmark)"/></td>
+                           <td><select class="form-control" ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories"></select>
+                           <td><input class="form-control" type="text" ng-model="bookmark.description" ng-blur="updateBookmark(bookmark)"/></td>
+                           <td><input class="form-control" type="text" ng-model="bookmark.url" ng-blur="updateBookmark(bookmark)"/></td>
+                           <td>
+                               <button class="btn btn-danger" ng-click="removeBookmark(bookmark)">Remove</button>
+                           </td>
+                       </tr>
+                   </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>  
 </div>
