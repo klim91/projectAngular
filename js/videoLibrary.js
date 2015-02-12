@@ -1,5 +1,9 @@
-angular.module("videoApp", ["ui.router", "videoApp.factoryImageService", "videoApp.factoryBookmarkService"])
+angular.module("videoApp", ["ui.router", "videoApp.factoryImageService", "videoApp.factoryBookmarkService", "xeditable"])
 
+    .run(function(editableOptions) {
+      editableOptions.theme = 'bs3';
+    })
+    
     .config(function($stateProvider, $urlRouterProvider) {
           $stateProvider
             .state('home', {
@@ -28,6 +32,7 @@ angular.module("videoApp", ["ui.router", "videoApp.factoryImageService", "videoA
         $scope.currentBookmarks = [];
         $scope.showEditCategory = false;
         $scope.showEditBookmark = false;
+        $scope.currentName = "";
         
         $scope.addCategory = function(category) {
             if(!ImageService.isExistsCategory(category))

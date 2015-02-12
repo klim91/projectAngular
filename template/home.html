@@ -95,12 +95,12 @@
                     </thead>
                    <tbody>
                        <tr ng-repeat="bookmark in bookmarks">
-                           <td><input class="form-control" type="text" ng-model="bookmark.title" ng-blur="updateBookmark(bookmark)"/></td>
-                           <td><select class="form-control" ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories" ng-blur="updateBookmark(bookmark)"></select>
-                           <td><input class="form-control" type="text" ng-model="bookmark.description" ng-blur="updateBookmark(bookmark)"/></td>
-                           <td><input class="form-control" type="text" ng-model="bookmark.url" ng-blur="updateBookmark(bookmark)"/></td>
+                           <td><p e-style="color: red" editable-text="bookmark.title" class="form-control" type="text" ng-model="bookmark.title" ng-blur="updateBookmark(bookmark)" style="text-decoration: none;">{{bookmark.title}}</p></td>
+                           <td><select style="margin-top: -10px;" class="form-control" ng-model="bookmark.categoryname" ng-options="category.name as category.name for category in categories" ng-blur="updateBookmark(bookmark)"></select>
+                           <td><p e-style="color: red" editable-text="bookmark.description" class="form-control" type="text" ng-model="bookmark.description" ng-blur="updateBookmark(bookmark)"/>{{bookmark.description}}</p></td>
+                           <td><p e-style="color: red" editable-url="bookmark.url" class="form-control" type="text" ng-model="bookmark.url" ng-blur="updateBookmark(bookmark)"/>{{bookmark.url}}</p></td>
                            <td>
-                               <button class="btn btn-danger" ng-click="removeBookmark(bookmark)">Remove</button>
+                               <button style="margin-top: -10px;" class="btn btn-danger" ng-click="removeBookmark(bookmark)">Remove</button>
                            </td>
                        </tr>
                    </tbody>
@@ -110,3 +110,9 @@
         </div>
     </div>  
 </div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted text-right">Project created by Michał Klimczak 2015</p>
+  </div>
+</footer>

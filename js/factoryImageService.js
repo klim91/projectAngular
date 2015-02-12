@@ -1,7 +1,7 @@
 angular.module("videoApp.factoryImageService", ["firebase"])
 
     .factory("ImageService", function($firebase, FIREBASE_URI){
-        var refCategory = new Firebase(FIREBASE_URI);
+        var refCategory = new Firebase(FIREBASE_URI+"/category");
         var sync = $firebase(refCategory);
         var categories = sync.$asArray();
         

@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Project angularjs - video library</title>
-    <link id="page_favicon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AACAAAAAv/4AACIiAABiIgAAYiIAAGIiAABiIgAAIiIAAL/+AACAAAAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
+    <link id="page_favicon" href="http://www.clker.com/cliparts/T/7/q/7/B/B/favicon-hi.png" rel="icon" type="image/png" />
     
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
     <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
     <script type="text/javascript" src="js/videoLibrary.js"></script>
     <script type="text/javascript" src="js/factoryImageService.js"></script>
     <script type="text/javascript" src="js/factoryBookmarkService.js"></script>
     
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css">
 </head>
 <body ng-controller="imageCtrl">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -22,15 +24,17 @@
           <p class="navbar-brand" href="#">Dynamic Image Gallery</p>
         </div>
       </div>
-      <div class="container-fluid" style="border-top-color: #2f71a9; border-top-style: solid; border-top-width: 1px;">
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a ui-sref="home">Home</a></li>
-            <li ng-repeat="category in categories"><a ng-click="setActiveCategory(category)" ui-sref="category">{{category.name}}</a></li>
-          </ul>
-        </div>
-      </div>
     </nav>
-    <div style="margin-top: 60px;" ui-view></div>
+    <nav class="navbar navbar-inverse" style="margin-top: 60px;">
+      <div class="container-fluid" style="border-top-color: #2f71a9; border-top-style: solid; border-top-width: 1px;">
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a ui-sref="home">Home</a></li>
+              <li ng-repeat="category in categories"><a ng-click="setActiveCategory(category)" ui-sref="category">{{category.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div ui-view></div>
 </body>
 </html>
